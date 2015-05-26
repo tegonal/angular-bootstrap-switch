@@ -1,6 +1,6 @@
 /**
  * angular-bootstrap-switch
- * @version v0.4.0 - 2015-04-13
+ * @version v0.4.0-tegonal-1 - 2015-05-26
  * @author Francesco Pontillo (francescopontillo@gmail.com)
  * @link https://github.com/frapontillo/angular-bootstrap-switch
  * @license Apache License 2.0(http://www.apache.org/licenses/LICENSE-2.0.html)
@@ -89,8 +89,7 @@ angular.module('frapontillo.bootstrap-switch').directive('bsSwitch', [
               'switchWrapper': function (value) {
                 return value || 'wrapper';
               },
-              'switchInverse': getBooleanFromString,
-              'switchReadonly': getBooleanFromString
+              'switchInverse': getBooleanFromString
             };
           var transFn = map[attrName] || getValueOrUndefined;
           return transFn(attrs[attrName]);
@@ -138,8 +137,7 @@ angular.module('frapontillo.bootstrap-switch').directive('bsSwitch', [
               wrapperClass: getSwitchAttrValue('switchWrapper'),
               handleWidth: getSwitchAttrValue('switchHandleWidth'),
               labelWidth: getSwitchAttrValue('switchLabelWidth'),
-              inverse: getSwitchAttrValue('switchInverse'),
-              readonly: getSwitchAttrValue('switchReadonly')
+              inverse: getSwitchAttrValue('switchInverse')
             });
             if (attrs.type === 'radio') {
               controller.$setViewValue(controller.$modelValue);
@@ -189,8 +187,7 @@ angular.module('frapontillo.bootstrap-switch').directive('bsSwitch', [
               'switchWrapper': 'wrapperClass',
               'switchHandleWidth': 'handleWidth',
               'switchLabelWidth': 'labelWidth',
-              'switchInverse': 'inverse',
-              'switchReadonly': 'readonly'
+              'switchInverse': 'inverse'
             };
           var observeProp = function (prop, bindings) {
             return function () {

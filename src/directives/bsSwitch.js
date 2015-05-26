@@ -61,6 +61,9 @@ angular.module('frapontillo.bootstrap-switch')
         var getSwitchAttrValue = function(attrName) {
           var map = {
             'switchRadioOff': getBooleanFromStringDefTrue,
+            'switchReadonly': function (value) {
+              return !getBooleanFromString(value);
+            },
             'switchActive': function(value) {
               return !getBooleanFromStringDefTrue(value);
             },
@@ -76,8 +79,7 @@ angular.module('frapontillo.bootstrap-switch')
             'switchWrapper': function(value) {
               return value || 'wrapper';
             },
-            'switchInverse': getBooleanFromString,
-            'switchReadonly': getBooleanFromString
+            'switchInverse': getBooleanFromString
           };
           var transFn = map[attrName] || getValueOrUndefined;
           return transFn(attrs[attrName]);
@@ -115,6 +117,7 @@ angular.module('frapontillo.bootstrap-switch')
             // Bootstrap the switch plugin
             element.bootstrapSwitch({
               radioAllOff: getSwitchAttrValue('switchRadioOff'),
+              readonly: !getSwitchAttrValue('switchReadonly'),
               disabled: getSwitchAttrValue('switchActive'),
               state: viewValue,
               onText: getSwitchAttrValue('switchOnText'),
@@ -127,8 +130,7 @@ angular.module('frapontillo.bootstrap-switch')
               wrapperClass: getSwitchAttrValue('switchWrapper'),
               handleWidth: getSwitchAttrValue('switchHandleWidth'),
               labelWidth: getSwitchAttrValue('switchLabelWidth'),
-              inverse: getSwitchAttrValue('switchInverse'),
-              readonly: getSwitchAttrValue('switchReadonly')
+              inverse: getSwitchAttrValue('switchInverse')
             });
             if (attrs.type === 'radio') {
               controller.$setViewValue(controller.$modelValue);
@@ -171,6 +173,7 @@ angular.module('frapontillo.bootstrap-switch')
           // angular attribute to switch property bindings
           var bindings = {
             'switchRadioOff': 'radioAllOff',
+            'switchReadonly': 'readonly',
             'switchOnText': 'onText',
             'switchOffText': 'offText',
             'switchOnColor': 'onColor',
@@ -182,8 +185,7 @@ angular.module('frapontillo.bootstrap-switch')
             'switchWrapper': 'wrapperClass',
             'switchHandleWidth': 'handleWidth',
             'switchLabelWidth': 'labelWidth',
-            'switchInverse': 'inverse',
-            'switchReadonly': 'readonly'
+            'switchInverse': 'inverse'
           };
 
           var observeProp = function(prop, bindings) {
