@@ -71,6 +71,9 @@ angular.module('frapontillo.bootstrap-switch').directive('bsSwitch', [
         var getSwitchAttrValue = function (attrName) {
           var map = {
               'switchRadioOff': getBooleanFromStringDefTrue,
+              'switchReadonly': function (value) {
+                return !getBooleanFromString(value);
+              },
               'switchActive': function (value) {
                 return !getBooleanFromStringDefTrue(value);
               },
@@ -122,6 +125,7 @@ angular.module('frapontillo.bootstrap-switch').directive('bsSwitch', [
             // Bootstrap the switch plugin
             element.bootstrapSwitch({
               radioAllOff: getSwitchAttrValue('switchRadioOff'),
+              readonly: !getSwitchAttrValue('switchReadonly'),
               disabled: getSwitchAttrValue('switchActive'),
               state: viewValue,
               onText: getSwitchAttrValue('switchOnText'),
@@ -173,6 +177,7 @@ angular.module('frapontillo.bootstrap-switch').directive('bsSwitch', [
           // angular attribute to switch property bindings
           var bindings = {
               'switchRadioOff': 'radioAllOff',
+              'switchReadonly': 'readonly',
               'switchOnText': 'onText',
               'switchOffText': 'offText',
               'switchOnColor': 'onColor',
